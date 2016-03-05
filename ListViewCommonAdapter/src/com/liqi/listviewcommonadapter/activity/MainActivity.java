@@ -32,7 +32,7 @@ public class MainActivity extends Activity implements
 		list_view = (ListView) findViewById(R.id.list_view);
 		List<String> data = new ArrayList<String>();
 		for (int i = 0; i < 50; i++) {
-			data.add("好一朵魅力的棋子花>>" + i + "" + i);
+			data.add("好一朵美丽的茉莉花>>" + i + "" + i);
 		}
 		// Item布局里面的控件ID
 		int id[] = { R.id.textview_id_one, R.id.textview_id_two };
