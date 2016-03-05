@@ -17,14 +17,14 @@ public class AdapterFather<T> extends BaseAdapter {
 	protected List<T> data;// 此集合需要添加其他属性,可以在此对象里面去添加
 	protected Context context;
 	protected int layou;
-	private int layouID[];
+	private int[] layouIds;
 	private AdapterAgencyInterface<T> agencyInterface;
 
 	/**
 	 * 
 	 * @param data
 	 *            要展示的数据集合
-	 * @param layouID
+	 * @param layouIds
 	 *            item布局ID集合
 	 * @param context
 	 *            上下文
@@ -35,13 +35,13 @@ public class AdapterFather<T> extends BaseAdapter {
 	 * @throws Exception
 	 *             如果（getView操作回调接口）为空就抛出此异常
 	 */
-	public AdapterFather(List<T> data, int layouID[], Context context,
+	public AdapterFather(List<T> data, int[] layouIds, Context context,
 			int layou, AdapterAgencyInterface<T> agencyInterface)
 			throws Exception {
 		this.data = data;
 		this.context = context;
 		this.layou = layou;
-		this.layouID = layouID;
+		this.layouIds = layouIds;
 		if (agencyInterface != null)
 			this.agencyInterface = agencyInterface;
 		else
@@ -73,8 +73,8 @@ public class AdapterFather<T> extends BaseAdapter {
 		if (convertView == null) {
 			view = View.inflate(context, layou, null);
 			snf = new AdapterInnerClass();
-			for (int i = 0; i < layouID.length; i++) {
-				int clazz = layouID[i];
+			for (int i = 0; i < layouIds.length; i++) {
+				int clazz = layouIds[i];
 				Object obj = view.findViewById(clazz);
 				snf.obj.put(clazz, obj);
 			}
@@ -97,6 +97,9 @@ public class AdapterFather<T> extends BaseAdapter {
 	 * @param data
 	 */
 	public void setData(List<T> data) {
-		this.data = data;
+		this.data.clear();
+		if (data != null) {
+			this.data.addAll(data);
+		}
 	}
 }
